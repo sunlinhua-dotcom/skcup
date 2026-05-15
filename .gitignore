@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+*.swp
+
+# claude-preview helper
+.claude/
+
+# build artifacts (none currently)
+node_modules/
+dist/
+*.log
+
+# legacy video-rendering artifacts (not used by the deck)
+renders/
+video_frames/
+voice_segments/
+voiceover*.wav
+voiceover*.json
+scene_plan.json
+scene_groups.json
+script.txt
+video_voice_plan.json
