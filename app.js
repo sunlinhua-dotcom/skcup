@@ -881,6 +881,48 @@ function triggerSlideAnimations(slideEl) {
   });
 }
 
+// Fit-to-frame: scale slide-inner down if its natural content height exceeds
+// the available 16:9 frame. Never scales up, never crops.
+function fitSlide(slideEl) {
+  if (!slideEl) return;
+  // Mobile: vertical flow handles overflow, skip scaling
+  if (window.innerWidth <= 880) {
+    const inner = slideEl.querySelector(".slide-inner");
+    if (inner) {
+      inner.style.transform = "";
+      inner.style.width = "";
+      inner.style.height = "";
+    }
+    return;
+  }
+  const inner = slideEl.querySelector(".slide-inner");
+  if (!inner) return;
+
+  // Reset before measuring
+  inner.style.transform = "";
+  inner.style.width = "";
+  inner.style.height = "";
+
+  // Force a reflow so scrollHeight is accurate
+  void inner.offsetHeight;
+
+  const availH = slideEl.clientHeight;
+  const availW = slideEl.clientWidth;
+  const contentH = inner.scrollHeight;
+  const contentW = inner.scrollWidth;
+
+  if (contentH <= availH && contentW <= availW) return;
+
+  const scale = Math.min(availH / contentH, availW / contentW, 1);
+  if (scale >= 0.999) return;
+
+  // Expand inner box so after scaling it covers the slide cleanly.
+  inner.style.transformOrigin = "top left";
+  inner.style.width = `${100 / scale}%`;
+  inner.style.height = `${100 / scale}%`;
+  inner.style.transform = `scale(${scale})`;
+}
+
 function setActive(index) {
   activeIndex = Math.max(0, Math.min(index, deckData.slides.length - 1));
 
@@ -891,6 +933,7 @@ function setActive(index) {
       slide.classList.remove("active");
       void slide.offsetWidth;
       slide.classList.add("active");
+      fitSlide(slide);
       triggerSlideAnimations(slide);
     } else {
       slide.classList.remove("active");
@@ -923,6 +966,16 @@ nextEl.addEventListener("click", () => setActive(activeIndex + 1));
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === " ") setActive(activeIndex + 1);
   if (event.key === "ArrowLeft") setActive(activeIndex - 1);
+});
+
+// Refit active slide when viewport changes (resize / DPR / device rotate)
+let _resizeT = null;
+window.addEventListener("resize", () => {
+  if (_resizeT) clearTimeout(_resizeT);
+  _resizeT = setTimeout(() => {
+    const active = deckEl?.querySelector(".slide.active");
+    if (active) fitSlide(active);
+  }, 120);
 });
 
 // touch swipe support
