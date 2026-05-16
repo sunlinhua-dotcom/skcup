@@ -59,28 +59,32 @@ window.DECK_DATA = {
           "role": "GERM 格米 / 杯具熊",
           "scenes": "授权 Disney / Coca-Cola / Sanrio / 草莓熊等头部 IP，单 SKU 多 IP 变体",
           "hero": "公开渠道客单约 ¥99-249，年轻女性 + 礼品场景",
-          "kpi": "靠 IP 溢价和收藏属性带销量"
+          "kpi": "靠 IP 溢价和收藏属性带销量",
+          "image": "./assets/generated/germ_ip_concept.png"
         },
         {
           "name": "结构创新路径",
           "role": "Owala FreeSip / Stanley Quencher",
           "scenes": "一盖三模式（吸管 + 嘴喝 + 大口）、手柄 + 吸管组合，结构差异化",
           "hero": "公开渠道客单约 ¥199-399，长期资产",
-          "kpi": "结构是护城河，难复制"
+          "kpi": "结构是护城河，难复制",
+          "image": "./assets/generated/owala_multimode.png"
         },
         {
           "name": "颜色机制路径",
           "role": "Stanley 限定色 / 杯具熊季节色",
           "scenes": "同 SKU 每月放限定色、联名色、季节色，构成持续话题",
           "hero": "复购率 + 收藏率拉满",
-          "kpi": "不增模具，靠颜色延长 SKU 生命"
+          "kpi": "不增模具，靠颜色延长 SKU 生命",
+          "image": "./assets/generated/stanley_colors_stack.png"
         },
         {
           "name": "舒适科技路径",
           "role": "斯凯奇要走的路",
           "scenes": "用品牌已有舒适科技语言定义杯子触点（手柄/嘴/底/盖）",
           "hero": "公开渠道客单约 ¥179-279，运动生活方式人群",
-          "kpi": "和斯凯奇鞋服资产互相印证"
+          "kpi": "和斯凯奇鞋服资产互相印证",
+          "image": "./assets/generated/handle_mouth_hero.png"
         }
       ],
       "proof": "前三条都有人占住，第四条是斯凯奇可以独占的位置。"
@@ -424,71 +428,75 @@ window.DECK_DATA = {
     },
     {
       "id": "brand_assets_p1",
-      "layout": "asset_with_image",
+      "layout": "asset_card_grid",
       "kicker": "斯凯奇舒适资产 · 一",
       "headline": "斯凯奇怎么做鞋舒适，杯子也怎么做",
       "subhead": "MEMORY FOAM、SKECH-AIR、GLIDE-STEP、GO FLEX——四项鞋类舒适科技。不是把鞋底纹路画在杯身上，是把「上脚舒适」翻到杯子的手柄、杯底、开盖、杯身。",
-      "image": "./assets/generated/comfort_shoe_hero.png?v=2",
-      "image_alt": "斯凯奇舒适科技鞋款示意",
       "assets": [
         {
           "code": "MEMORY FOAM",
           "name_cn": "记忆海绵鞋垫 → 软触提手",
           "source": "品牌介绍 p21",
-          "translation": "手柄记忆海绵套包裹，握 1L 大容量也不勒手，长时间携带不累"
+          "translation": "手柄记忆海绵套包裹，握 1L 大容量也不勒手，长时间携带不累",
+          "image": "./assets/generated/tech_memory_foam.png"
         },
         {
           "code": "SKECH-AIR",
           "name_cn": "气垫缓震 → 杯底防摔气囊",
           "source": "品牌介绍 p21",
-          "translation": "杯底硅胶气囊，1.2m 跌落不变形——儿童线安全核心卖点"
+          "translation": "杯底硅胶气囊，1.2m 跌落不变形——儿童线安全核心卖点",
+          "image": "./assets/generated/tech_skech_air.png"
         },
         {
           "code": "GLIDE-STEP",
           "name_cn": "回弹脚感 → 回弹按盖",
           "source": "品牌介绍 p21",
-          "translation": "PaceClick 一按即开盖，运动中单手秒开秒合，节奏不断"
+          "translation": "PaceClick 一按即开盖，运动中单手秒开秒合，节奏不断",
+          "image": "./assets/generated/tech_glide_step.png"
         },
         {
           "code": "GO FLEX",
           "name_cn": "柔软鞋面 → 软触杯身",
           "source": "品牌介绍 p21",
-          "translation": "杯身哑光软触涂层，不滑不冰手，比硬塑料温柔"
+          "translation": "杯身哑光软触涂层，不滑不冰手，比硬塑料温柔",
+          "image": "./assets/generated/tech_go_flex.png"
         }
       ]
     },
     {
       "id": "brand_assets_p2",
-      "layout": "asset_with_image",
+      "layout": "asset_card_grid",
       "kicker": "斯凯奇舒适资产 · 二",
       "headline": "再看四项品牌资产怎么翻译",
       "subhead": "GODRI 速干、SKECHWEAVE 梭织、RESTLESS YOUTH 人设、COMFORT TECHNOLOGY 品牌主张——四项决定杯子的嘴、肩、走法和叙事。",
-      "image": "./assets/generated/weave_knit_hero.png",
-      "image_alt": "斯凯奇梭织鞋面纹理",
       "assets": [
         {
           "code": "GODRI",
           "name_cn": "鞋面透气速干 → 杯嘴不滴不挂",
           "source": "品牌介绍 p14, p22",
-          "translation": "速干杯嘴 + 防滴漏导槽，喝完嘴边不沾水"
+          "translation": "速干杯嘴 + 防滴漏导槽，喝完嘴边不沾水",
+          "image": "./assets/generated/tech_go_flex.png"
         },
         {
           "code": "SKECHWEAVE",
           "name_cn": "梭织鞋面 → 梭织肩带",
           "source": "品牌介绍 p22",
-          "translation": "宽幅梭织肩带，曲面贴肩不勒，背 1 小时不累"
+          "translation": "宽幅梭织肩带，曲面贴肩不勒，背 1 小时不累",
+          "image": "./assets/generated/weave_knit_hero.png"
         },
         {
           "code": "RESTLESS YOUTH",
           "name_cn": "坐不住的年轻人 → 杯子跟着走",
           "source": "品牌介绍 p9",
-          "translation": "绳带、磁吸、肩带、挂扣——配件让杯子可佩戴"
+          "translation": "绳带、磁吸、肩带、挂扣——配件让杯子可佩戴",
+          "image": "./assets/generated/running_lifestyle.png"
         },
         {
           "code": "COMFORT TECHNOLOGY",
           "name_cn": "舒适科技公司 → 全部卖点回到舒适",
           "source": "品牌介绍 p16-17",
-          "translation": "不卖参数表，卖的是上手、上嘴、上肩的舒适体验"
+          "translation": "不卖参数表，卖的是上手、上嘴、上肩的舒适体验",
+          "image": "./assets/generated/comfort_shoe_hero.png"
         }
       ],
       "proof": "八项资产盘点完了。每一款杯子卖点都得回到这两张表的某一行——最后落到一个词：舒适。"
@@ -571,7 +579,8 @@ window.DECK_DATA = {
             {
               "text": "酷感冰霸杯 ¥199"
             }
-          ]
+          ],
+          "image": "./assets/generated/series_sporty.png"
         },
         {
           "name": "TRENDY",
@@ -602,7 +611,8 @@ window.DECK_DATA = {
             {
               "text": "轻漾/轻透/炫彩 ¥99-109"
             }
-          ]
+          ],
+          "image": "./assets/generated/series_trendy.png"
         },
         {
           "name": "YOUNG",
@@ -627,7 +637,8 @@ window.DECK_DATA = {
             {
               "text": "轻澈/轻沁 ¥99"
             }
-          ]
+          ],
+          "image": "./assets/generated/series_young.png"
         },
         {
           "name": "URBAN",
@@ -636,7 +647,8 @@ window.DECK_DATA = {
             {
               "text": "焕能冰霸杯 ¥199（与 TRENDY 共用）"
             }
-          ]
+          ],
+          "image": "./assets/generated/series_urban.png"
         },
         {
           "name": "KIDS",
@@ -649,7 +661,8 @@ window.DECK_DATA = {
             {
               "text": "（明显薄弱，最大增量空间）"
             }
-          ]
+          ],
+          "image": "./assets/generated/series_kids.png"
         }
       ],
       "proof": "四款英雄都对应原矩阵的 ⭐ SKU——升级而不是替换。儿童线只有单 SKU，是最大增量空间。"

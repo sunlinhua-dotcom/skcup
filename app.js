@@ -511,7 +511,8 @@ function renderSkuMatrix(slide) {
           ${slide.series
             .map(
               (s, i) => `
-                <article class="sku-col" data-anim ${stagger(i, 120, 320)}>
+                <article class="sku-col${s.image ? " with-image" : ""}" data-anim ${stagger(i, 120, 320)}>
+                  ${s.image ? `<figure class="sku-image"><img src="${esc(s.image)}" alt="${esc(s.name)}" /></figure>` : ""}
                   <header>
                     <b>${esc(s.name)}</b>
                     <span>${esc(s.name_cn)}</span>
@@ -562,8 +563,9 @@ function renderTouchpoint(slide) {
 }
 
 function renderChannelGrid(slide) {
+  const anyImage = slide.channels.some((c) => c.image);
   return `
-    <section class="slide layout-channel-grid" data-id="${esc(slide.id)}">
+    <section class="slide layout-channel-grid${anyImage ? " with-images" : ""}" data-id="${esc(slide.id)}">
       <div class="slide-inner">
         ${topline(slide)}
         <div class="channel-grid">
@@ -571,6 +573,7 @@ function renderChannelGrid(slide) {
             .map(
               (c, i) => `
                 <article class="channel-card" data-anim ${stagger(i, 140, 320)}>
+                  ${c.image ? `<figure class="ch-image"><img src="${esc(c.image)}" alt="${esc(c.name)}" /></figure>` : ""}
                   <header>
                     <b>${esc(c.name)}</b>
                     <span>${esc(c.role)}</span>
@@ -584,6 +587,34 @@ function renderChannelGrid(slide) {
             .join("")}
         </div>
         ${proofBlock(slide, 320 + slide.channels.length * 140 + 200)}
+      </div>
+    </section>
+  `;
+}
+
+function renderAssetCardGrid(slide) {
+  return `
+    <section class="slide layout-asset-card-grid" data-id="${esc(slide.id)}">
+      <div class="slide-inner">
+        ${topline(slide)}
+        <div class="asset-card-grid">
+          ${slide.assets
+            .map(
+              (a, i) => `
+                <article class="asset-photo-card" data-anim-scale ${stagger(i, 110, 320)}>
+                  ${a.image ? `<figure class="asset-photo"><img src="${esc(a.image)}" alt="${esc(a.code)}" /></figure>` : ""}
+                  <div class="asset-photo-body">
+                    <span class="asset-code">${esc(a.code)}</span>
+                    <b>${esc(a.name_cn)}</b>
+                    <p class="asset-source">${esc(a.source)}</p>
+                    <p class="asset-translation">${esc(a.translation)}</p>
+                  </div>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+        ${proofBlock(slide, 320 + slide.assets.length * 110 + 220)}
       </div>
     </section>
   `;
@@ -819,6 +850,7 @@ function renderSlide(slide) {
     stats: renderStats,
     asset_grid: renderAssetGrid,
     asset_with_image: renderAssetWithImage,
+    asset_card_grid: renderAssetCardGrid,
     translation: renderTranslation,
     hero_spec: renderHeroSpec,
     validation_table: renderValidationTable,
