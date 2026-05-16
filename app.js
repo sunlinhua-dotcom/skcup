@@ -913,46 +913,33 @@ function triggerSlideAnimations(slideEl) {
   });
 }
 
-// Fit-to-frame: scale slide-inner down if its natural content height exceeds
-// the available 16:9 frame. Never scales up, never crops.
-function fitSlide(slideEl) {
-  if (!slideEl) return;
-  // Mobile: vertical flow handles overflow, skip scaling
+// Fixed-canvas scaling (reveal.js / slides.com pattern):
+// Every slide is laid out at exactly 1920×1080 (set in CSS). We compute a
+// single uniform scale = min(deckW/1920, deckH/1080) and apply it on the
+// .deck root via --deck-scale. The CSS `transform: scale(var(--deck-scale))`
+// on every .slide does the rest. No content measurement, no per-page
+// overflow logic — design always at 1920×1080, render anywhere.
+const CANVAS_W = 1920;
+const CANVAS_H = 1080;
+
+function recomputeDeckScale() {
+  if (!deckEl) return;
+  // Mobile (≤880px) bypasses canvas scaling — separate vertical flow in CSS.
   if (window.innerWidth <= 880) {
-    const inner = slideEl.querySelector(".slide-inner");
-    if (inner) {
-      inner.style.transform = "";
-      inner.style.width = "";
-      inner.style.height = "";
-    }
+    deckEl.style.removeProperty("--deck-scale");
+    document.documentElement.style.removeProperty("--deck-scale");
     return;
   }
-  const inner = slideEl.querySelector(".slide-inner");
-  if (!inner) return;
+  const w = deckEl.clientWidth;
+  const h = deckEl.clientHeight;
+  if (!w || !h) return;
+  const scale = Math.min(w / CANVAS_W, h / CANVAS_H);
+  deckEl.style.setProperty("--deck-scale", scale.toFixed(4));
+}
 
-  // Reset before measuring
-  inner.style.transform = "";
-  inner.style.width = "";
-  inner.style.height = "";
-
-  // Force a reflow so scrollHeight is accurate
-  void inner.offsetHeight;
-
-  const availH = slideEl.clientHeight;
-  const availW = slideEl.clientWidth;
-  const contentH = inner.scrollHeight;
-  const contentW = inner.scrollWidth;
-
-  if (contentH <= availH && contentW <= availW) return;
-
-  const scale = Math.min(availH / contentH, availW / contentW, 1);
-  if (scale >= 0.999) return;
-
-  // Expand inner box so after scaling it covers the slide cleanly.
-  inner.style.transformOrigin = "top left";
-  inner.style.width = `${100 / scale}%`;
-  inner.style.height = `${100 / scale}%`;
-  inner.style.transform = `scale(${scale})`;
+// Kept as a no-op shim so existing callers (setActive, resize listener) work.
+function fitSlide(_slideEl) {
+  recomputeDeckScale();
 }
 
 function setActive(index) {
@@ -1000,15 +987,13 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") setActive(activeIndex - 1);
 });
 
-// Refit active slide when viewport changes (resize / DPR / device rotate)
+// Recompute canvas scale on viewport changes
 let _resizeT = null;
 window.addEventListener("resize", () => {
   if (_resizeT) clearTimeout(_resizeT);
-  _resizeT = setTimeout(() => {
-    const active = deckEl?.querySelector(".slide.active");
-    if (active) fitSlide(active);
-  }, 120);
+  _resizeT = setTimeout(recomputeDeckScale, 120);
 });
+window.addEventListener("load", recomputeDeckScale);
 
 // touch swipe support
 let touchStartX = null;

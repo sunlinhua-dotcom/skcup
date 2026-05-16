@@ -100,11 +100,24 @@ ul { list-style: none; }
   height: 100%;
   overflow: hidden;
   background: var(--paper);
+  --deck-scale: 1;
 }
+
+/* ============ Fixed-canvas pattern (reveal.js / slides.com) ============
+   Each slide is a 1920×1080 canvas anchored center. JS computes a single
+   uniform scale = min(deckW/1920, deckH/1080) on resize / slide change,
+   sets it on --deck-scale, and the transform below scales the whole slide.
+   All px inside the slide is calibrated to the 1920 canvas — no clamp,
+   no per-resolution audit. */
 
 .slide {
   position: absolute;
-  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(var(--deck-scale, 1));
   display: grid;
   opacity: 0;
   visibility: hidden;
@@ -124,10 +137,10 @@ ul { list-style: none; }
   position: relative;
   width: 100%;
   height: 100%;
-  padding: clamp(32px, 4.4vw, 80px) clamp(44px, 5.6vw, 112px);
+  padding: 80px 108px;
   display: grid;
   z-index: 2;
-  gap: clamp(14px, 1.8vw, 35px);
+  gap: 35px;
 }
 
 /* ============ Background image / watermark ============ */
@@ -240,7 +253,7 @@ ul { list-style: none; }
 /* ============ Typography ============ */
 .kicker {
   display: inline-block;
-  font-size: clamp(11px, 0.9vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   letter-spacing: 0.18em;
   color: var(--blue);
@@ -262,7 +275,7 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: clamp(56px, 8vw, 140px);
+  font-size: 140px;
   line-height: 0.92;
   letter-spacing: -0.02em;
   color: var(--navy);
@@ -270,19 +283,19 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(34px, 3.8vw, 77px);
+  font-size: 73px;
   line-height: 1.06;
   letter-spacing: -0.015em;
   hanging-punctuation: allow-end;
 }
 
 h3 {
-  font-size: clamp(20px, 1.8vw, 40px);
+  font-size: 35px;
   line-height: 1.1;
 }
 
 .subtitle {
-  font-size: clamp(14px, 1.15vw, 25px);
+  font-size: 22px;
   line-height: 1.65;
   color: var(--muted);
   font-weight: 500;
@@ -297,7 +310,7 @@ h3 {
   padding: 14px 22px;
   background: var(--ink);
   color: #fff;
-  font-size: clamp(14px, 1.05vw, 23px);
+  font-size: 20px;
   font-weight: 800;
   line-height: 1.4;
   max-width: 920px;
@@ -325,7 +338,7 @@ h3 {
 .layout-cover .slide-inner {
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: clamp(28px, 4vw, 80px);
+  gap: 77px;
 }
 
 .cover-bg-mark {
@@ -348,7 +361,7 @@ h3 {
 
 .cover-copy {
   display: grid;
-  gap: clamp(20px, 2.2vw, 45px);
+  gap: 42px;
   align-content: center;
   z-index: 2;
 }
@@ -361,7 +374,7 @@ h3 {
   background: var(--navy);
   color: #fff;
   font-weight: 900;
-  font-size: clamp(12px, 1vw, 20px);
+  font-size: 19px;
   letter-spacing: 0.16em;
   width: max-content;
 }
@@ -465,13 +478,13 @@ h3 {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(18px, 1.8vw, 40px);
+  gap: 35px;
   align-items: stretch;
 }
 
 .stat-card {
   position: relative;
-  padding: clamp(24px, 2.4vw, 48px);
+  padding: 46px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(6px);
@@ -498,7 +511,7 @@ h3 {
 }
 
 .stat-value {
-  font-size: clamp(40px, 4.8vw, 84px);
+  font-size: 84px;
   font-weight: 900;
   color: #fff;
   line-height: 0.94;
@@ -507,14 +520,14 @@ h3 {
 }
 
 .stat-unit {
-  font-size: clamp(13px, 1.05vw, 23px);
+  font-size: 20px;
   color: var(--cyan);
   font-weight: 900;
   letter-spacing: 0.08em;
 }
 
 .stat-note {
-  font-size: clamp(11px, 0.85vw, 18px);
+  font-size: 16px;
   color: rgba(255,255,255,0.65);
   line-height: 1.5;
   font-weight: 500;
@@ -538,7 +551,7 @@ h3 {
 .asset-card-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(12px, 1.2vw, 26px);
+  gap: 23px;
   align-items: stretch;
   min-height: 0;
 }
@@ -577,7 +590,7 @@ h3 {
 .asset-photo-card:hover .asset-photo img { transform: scale(1.04); }
 
 .asset-photo-body {
-  padding: clamp(14px, 1.3vw, 26px);
+  padding: 25px;
   display: grid;
   gap: 8px;
   align-content: start;
@@ -608,12 +621,12 @@ h3 {
 
 .layout-channel-grid.with-images .channel-card header,
 .layout-channel-grid.with-images .channel-card .ch-row {
-  padding-left: clamp(14px, 1.4vw, 29px);
-  padding-right: clamp(14px, 1.4vw, 29px);
+  padding-left: 27px;
+  padding-right: 27px;
 }
 
 .layout-channel-grid.with-images .channel-card header {
-  padding-top: clamp(14px, 1.4vw, 29px);
+  padding-top: 27px;
 }
 
 /* SKU column with image header */
@@ -647,7 +660,7 @@ h3 {
 .asset-image-body {
   display: grid;
   grid-template-columns: 1fr 0.85fr;
-  gap: clamp(24px, 2.4vw, 53px);
+  gap: 46px;
   min-height: 0;
 }
 
@@ -655,7 +668,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 1.4vw, 29px);
+  gap: 27px;
   min-height: 0;
 }
 
@@ -703,12 +716,12 @@ h3 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 1.2vw, 26px);
+  gap: 23px;
 }
 
 .asset-card {
   position: relative;
-  padding: clamp(20px, 1.9vw, 40px);
+  padding: 36px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -744,7 +757,7 @@ h3 {
 }
 
 .asset-code {
-  font-size: clamp(11px, 0.85vw, 18px);
+  font-size: 16px;
   font-weight: 900;
   letter-spacing: 0.08em;
   color: var(--blue);
@@ -754,21 +767,21 @@ h3 {
 }
 
 .asset-card b {
-  font-size: clamp(15px, 1.2vw, 27px);
+  font-size: 23px;
   font-weight: 900;
   color: var(--ink);
   line-height: 1.15;
 }
 
 .asset-source {
-  font-size: clamp(10px, 0.74vw, 15px);
+  font-size: 14px;
   color: var(--muted-2);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 .asset-translation {
-  font-size: clamp(12px, 0.92vw, 21px);
+  font-size: 18px;
   color: var(--navy);
   line-height: 1.6;
   font-weight: 600;
@@ -788,7 +801,7 @@ h3 {
 
 .translation-body {
   display: grid;
-  gap: clamp(20px, 2vw, 45px);
+  gap: 38px;
   min-height: 0;
 }
 
@@ -820,7 +833,7 @@ h3 {
   padding: 12px 18px;
   background: var(--navy);
   color: #fff;
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.04em;
   border-left: 4px solid var(--cyan);
@@ -828,7 +841,7 @@ h3 {
 
 .translation-table {
   display: grid;
-  gap: clamp(5px, 0.55vw, 10px);
+  gap: 10px;
   align-content: start;
 }
 
@@ -839,7 +852,7 @@ h3 {
   padding: 16px 24px;
   background: var(--navy);
   color: #fff;
-  font-size: clamp(13px, 1vw, 22px);
+  font-size: 19px;
   font-weight: 900;
   letter-spacing: 0.04em;
   align-items: center;
@@ -851,7 +864,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr 50px 1.1fr;
   gap: 18px;
-  padding: clamp(11px, 1vw, 21px) clamp(16px, 1.6vw, 30px);
+  padding: 19px 30px;
   background: var(--paper-soft);
   border: 1px solid var(--line);
   align-items: center;
@@ -866,7 +879,7 @@ h3 {
 
 .translation-row .arrow {
   text-align: center;
-  font-size: clamp(22px, 1.8vw, 40px);
+  font-size: 35px;
   color: var(--blue);
   font-weight: 900;
   transition: transform 280ms;
@@ -876,7 +889,7 @@ h3 {
 
 .cell-left b, .cell-right b {
   display: block;
-  font-size: clamp(15px, 1.18vw, 27px);
+  font-size: 23px;
   font-weight: 900;
   color: var(--ink);
   line-height: 1.16;
@@ -886,7 +899,7 @@ h3 {
 .cell-right b { color: var(--blue); }
 
 .cell-left p, .cell-right p {
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   color: var(--muted-2);
   line-height: 1.55;
   font-weight: 500;
@@ -935,10 +948,10 @@ h3 {
 }
 
 .hero-content-side {
-  padding: clamp(42px, 4.5vw, 80px) clamp(40px, 4vw, 86px);
+  padding: 80px 77px;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: clamp(20px, 2vw, 45px);
+  gap: 38px;
   align-content: start;
   position: relative;
   z-index: 2;
@@ -951,19 +964,19 @@ h3 {
 
 .hero-content-side h2 {
   color: #fff;
-  font-size: clamp(32px, 3.4vw, 67px);
+  font-size: 65px;
   line-height: 0.98;
 }
 
 .hero-content-side .subtitle {
   color: rgba(255,255,255,0.74);
-  font-size: clamp(13px, 1vw, 22px);
+  font-size: 19px;
   line-height: 1.55;
 }
 
 .hero-body-stack {
   display: grid;
-  gap: clamp(16px, 1.6vw, 30px);
+  gap: 30px;
   align-content: start;
 }
 
@@ -984,14 +997,14 @@ h3 {
 
 .spec-label {
   color: var(--cyan);
-  font-size: clamp(11px, 0.84vw, 18px);
+  font-size: 16px;
   font-weight: 900;
   letter-spacing: 0.06em;
 }
 
 .spec-value {
   color: #fff;
-  font-size: clamp(13px, 1vw, 22px);
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.32;
 }
@@ -1000,7 +1013,7 @@ h3 {
   padding: 14px 18px;
   background: var(--cyan);
   color: var(--navy);
-  font-size: clamp(14px, 1.1vw, 25px);
+  font-size: 21px;
   font-weight: 900;
   line-height: 1.35;
   position: relative;
@@ -1037,7 +1050,7 @@ h3 {
 .channel-tag b {
   display: block;
   color: var(--cyan);
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   margin-bottom: 3px;
   letter-spacing: 0.04em;
@@ -1045,7 +1058,7 @@ h3 {
 
 .channel-tag p {
   color: rgba(255,255,255,0.7);
-  font-size: clamp(11px, 0.8vw, 18px);
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.55;
 }
@@ -1066,14 +1079,14 @@ h3 {
 
 .kpi-cell span {
   color: rgba(255,255,255,0.55);
-  font-size: clamp(10px, 0.76vw, 16px);
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .kpi-cell b {
   color: var(--cyan);
-  font-size: clamp(14px, 1.18vw, 26px);
+  font-size: 23px;
   font-weight: 900;
 }
 
@@ -1101,7 +1114,7 @@ h3 {
 .validation-row.header span {
   background: var(--navy);
   color: #fff;
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   letter-spacing: 0.06em;
   padding: 12px 14px;
@@ -1110,11 +1123,11 @@ h3 {
 }
 
 .validation-row:not(.header) span {
-  padding: clamp(14px, 1.4vw, 29px) clamp(14px, 1.4vw, 29px);
+  padding: 27px 27px;
   background: #fff;
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: clamp(11px, 0.85vw, 18px);
+  font-size: 16px;
   line-height: 1.55;
   font-weight: 500;
   display: grid;
@@ -1135,7 +1148,7 @@ h3 {
 
 .validation-row .name-cell b {
   color: var(--cyan);
-  font-size: clamp(14px, 1.15vw, 26px);
+  font-size: 22px;
   font-weight: 900;
   letter-spacing: 0.02em;
 }
@@ -1160,12 +1173,12 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 1.4vw, 29px);
+  gap: 27px;
 }
 
 .dashboard-panel {
   position: relative;
-  padding: clamp(20px, 2vw, 40px);
+  padding: 38px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.12);
   display: grid;
@@ -1185,7 +1198,7 @@ h3 {
 
 .dashboard-panel header b {
   color: #fff;
-  font-size: clamp(16px, 1.3vw, 30px);
+  font-size: 25px;
   font-weight: 900;
 }
 
@@ -1193,7 +1206,7 @@ h3 {
   display: flex;
   gap: 4px;
   align-items: flex-end;
-  height: clamp(40px, 4vw, 77px);
+  height: 77px;
 }
 
 .dashboard-fakeviz .bar {
@@ -1218,7 +1231,7 @@ h3 {
 
 .dashboard-panel li {
   color: rgba(255,255,255,0.85);
-  font-size: clamp(11px, 0.88vw, 20px);
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.4;
   padding-left: 16px;
@@ -1240,7 +1253,7 @@ h3 {
   background: rgba(47,211,255,0.12);
   color: var(--cyan);
   font-weight: 900;
-  font-size: clamp(11px, 0.88vw, 20px);
+  font-size: 17px;
   border-left: 3px solid var(--cyan);
   letter-spacing: 0.02em;
 }
@@ -1256,7 +1269,7 @@ h3 {
 
 .weekly-track {
   position: relative;
-  padding-top: clamp(24px, 2.5vw, 53px);
+  padding-top: 48px;
 }
 
 .weekly-line {
@@ -1277,12 +1290,12 @@ h3 {
 .weekly-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 21px);
+  gap: 19px;
   position: relative;
 }
 
 .weekly-card {
-  padding: clamp(14px, 1.4vw, 29px) clamp(10px, 1vw, 21px);
+  padding: 27px 19px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -1319,13 +1332,13 @@ h3 {
   background: var(--navy);
   color: var(--cyan);
   font-weight: 900;
-  font-size: clamp(10px, 0.82vw, 16px);
+  font-size: 16px;
   letter-spacing: 0.05em;
   margin-top: 8px;
 }
 
 .weekly-card b {
-  font-size: clamp(13px, 1.05vw, 23px);
+  font-size: 20px;
   color: var(--ink);
   font-weight: 900;
   line-height: 1.1;
@@ -1335,7 +1348,7 @@ h3 {
 
 .weekly-card li {
   color: var(--muted);
-  font-size: clamp(10px, 0.76vw, 16px);
+  font-size: 15px;
   line-height: 1.36;
   font-weight: 500;
   padding-left: 10px;
@@ -1356,14 +1369,14 @@ h3 {
   display: grid;
   grid-template-columns: auto repeat(4, minmax(0, 1fr));
   gap: 8px;
-  margin-top: clamp(18px, 1.8vw, 35px);
+  margin-top: 35px;
 }
 
 .redline-label {
   background: var(--warn);
   color: #fff;
   padding: 12px 16px;
-  font-size: clamp(12px, 0.92vw, 20px);
+  font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.08em;
   display: grid;
@@ -1391,13 +1404,13 @@ h3 {
 
 .redline-pill b {
   color: var(--warn);
-  font-size: clamp(12px, 0.92vw, 20px);
+  font-size: 18px;
   font-weight: 900;
 }
 
 .redline-pill p {
   color: var(--ink);
-  font-size: clamp(11px, 0.82vw, 18px);
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -1432,18 +1445,18 @@ h3 {
   background: var(--navy);
   color: #fff;
   font-weight: 900;
-  font-size: clamp(11px, 0.88vw, 18px);
+  font-size: 17px;
   letter-spacing: 0.08em;
   padding: 12px 16px;
   text-transform: uppercase;
 }
 
 .year-row:not(.header) span {
-  padding: clamp(8px, 0.8vw, 16px) clamp(12px, 1.1vw, 23px);
+  padding: 15px 21px;
   background: #fff;
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: clamp(12px, 0.88vw, 20px);
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.5;
   display: grid;
@@ -1479,15 +1492,15 @@ h3 {
 .ask-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 2vw, 40px);
+  gap: 38px;
 }
 
 .ask-card {
-  padding: clamp(32px, 3vw, 60px);
+  padding: 58px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.16);
   display: grid;
-  gap: clamp(16px, 1.5vw, 30px);
+  gap: 29px;
   align-content: start;
   position: relative;
   overflow: hidden;
@@ -1503,7 +1516,7 @@ h3 {
 
 .ask-card em {
   font-style: normal;
-  font-size: clamp(48px, 5vw, 84px);
+  font-size: 84px;
   font-weight: 900;
   color: var(--cyan);
   line-height: 0.8;
@@ -1512,14 +1525,14 @@ h3 {
 
 .ask-card b {
   color: #fff;
-  font-size: clamp(18px, 1.6vw, 35px);
+  font-size: 31px;
   font-weight: 900;
   line-height: 1.15;
 }
 
 .ask-detail {
   color: rgba(255,255,255,0.7);
-  font-size: clamp(12px, 0.92vw, 21px);
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.65;
 }
@@ -1528,7 +1541,7 @@ h3 {
   padding: 10px 14px;
   background: rgba(47,211,255,0.12);
   color: var(--cyan);
-  font-size: clamp(11px, 0.88vw, 20px);
+  font-size: 17px;
   font-weight: 700;
   border-left: 3px solid var(--cyan);
   line-height: 1.4;
@@ -1552,7 +1565,7 @@ h3 {
 .case-body {
   display: grid;
   grid-template-columns: 0.78fr 1fr;
-  gap: clamp(28px, 2.8vw, 62px);
+  gap: 54px;
   min-height: 0;
 }
 
@@ -1578,7 +1591,7 @@ h3 {
 
 .case-lessons {
   display: grid;
-  gap: clamp(5px, 0.55vw, 10px);
+  gap: 10px;
   align-content: start;
 }
 
@@ -1586,7 +1599,7 @@ h3 {
   display: grid;
   grid-template-columns: 52px 1fr;
   gap: 14px;
-  padding: clamp(11px, 1vw, 20px) clamp(14px, 1.4vw, 26px);
+  padding: 19px 26px;
   background: #fff;
   border: 1px solid var(--line);
   align-items: start;
@@ -1597,7 +1610,7 @@ h3 {
 .lesson-row.lesson-bad { border-left: 5px solid var(--warn); }
 
 .lesson-tag {
-  font-size: clamp(13px, 1.05vw, 22px);
+  font-size: 20px;
   font-weight: 900;
   letter-spacing: 0.04em;
   padding: 6px 0;
@@ -1611,7 +1624,7 @@ h3 {
 
 .lesson-row b {
   display: block;
-  font-size: clamp(14px, 1.15vw, 26px);
+  font-size: 22px;
   color: var(--ink);
   font-weight: 900;
   line-height: 1.2;
@@ -1620,7 +1633,7 @@ h3 {
 
 .lesson-row p {
   color: var(--muted-2);
-  font-size: clamp(11px, 0.88vw, 18px);
+  font-size: 17px;
   line-height: 1.6;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -1640,13 +1653,13 @@ h3 {
 .segment-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 21px);
+  gap: 19px;
   align-items: stretch;
 }
 
 .segment-card {
   position: relative;
-  padding: clamp(20px, 1.8vw, 38px);
+  padding: 35px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -1668,7 +1681,7 @@ h3 {
 .seg-priority {
   width: max-content;
   padding: 3px 8px;
-  font-size: clamp(10px, 0.78vw, 15px);
+  font-size: 15px;
   font-weight: 900;
   letter-spacing: 0.08em;
   color: #fff;
@@ -1678,7 +1691,7 @@ h3 {
 .priority-p1 .seg-priority { background: var(--muted); }
 
 .segment-card b {
-  font-size: clamp(13px, 1.1vw, 23px);
+  font-size: 21px;
   font-weight: 900;
   color: var(--ink);
   line-height: 1.2;
@@ -1693,13 +1706,13 @@ h3 {
 
 .seg-label {
   color: var(--muted);
-  font-size: clamp(10px, 0.74vw, 15px);
+  font-size: 14px;
   font-weight: 800;
 }
 
 .seg-row span:not(.seg-label) {
   color: var(--ink-soft);
-  font-size: clamp(10px, 0.78vw, 16px);
+  font-size: 15px;
   line-height: 1.55;
   font-weight: 500;
 }
@@ -1709,7 +1722,7 @@ h3 {
   padding: 8px 10px;
   background: var(--blue-light);
   color: var(--blue);
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   border-left: 3px solid var(--blue);
 }
@@ -1726,7 +1739,7 @@ h3 {
 .sku-matrix-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 21px);
+  gap: 19px;
   align-items: stretch;
 }
 
@@ -1747,14 +1760,14 @@ h3 {
 }
 
 .sku-col header b {
-  font-size: clamp(14px, 1.15vw, 25px);
+  font-size: 22px;
   letter-spacing: 0.04em;
   font-weight: 900;
 }
 
 .sku-col header span {
   color: var(--cyan);
-  font-size: clamp(11px, 0.84vw, 18px);
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1767,7 +1780,7 @@ h3 {
 
 .sku-col li {
   color: var(--ink);
-  font-size: clamp(11px, 0.85vw, 18px);
+  font-size: 16px;
   line-height: 1.34;
   font-weight: 500;
   padding-left: 10px;
@@ -1808,7 +1821,7 @@ h3 {
 .touchpoint-body {
   display: grid;
   grid-template-columns: 0.55fr 1fr;
-  gap: clamp(24px, 2.4vw, 53px);
+  gap: 46px;
   min-height: 0;
 }
 
@@ -1867,7 +1880,7 @@ h3 {
 }
 
 .tp-num {
-  font-size: clamp(20px, 1.6vw, 35px);
+  font-size: 31px;
   font-weight: 900;
   color: var(--blue);
   letter-spacing: -0.02em;
@@ -1883,13 +1896,13 @@ h3 {
 
 .tp-head b {
   color: var(--ink);
-  font-size: clamp(13px, 1.05vw, 22px);
+  font-size: 20px;
   font-weight: 900;
 }
 
 .tp-asset {
   color: var(--blue);
-  font-size: clamp(10px, 0.76vw, 15px);
+  font-size: 15px;
   font-weight: 900;
   letter-spacing: 0.06em;
   padding: 2px 6px;
@@ -1898,7 +1911,7 @@ h3 {
 
 .tp-body p {
   color: var(--muted-2);
-  font-size: clamp(11px, 0.82vw, 16px);
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.6;
 }
@@ -1923,11 +1936,11 @@ h3 {
 .channel-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(14px, 1.4vw, 29px);
+  gap: 27px;
 }
 
 .channel-card {
-  padding: clamp(18px, 1.8vw, 35px);
+  padding: 35px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.14);
   display: grid;
@@ -1943,12 +1956,12 @@ h3 {
 }
 
 .channel-card header { display: grid; gap: 4px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.12); }
-.channel-card header b { color: #fff; font-size: clamp(18px, 1.5vw, 32px); font-weight: 900; }
-.channel-card header span { color: var(--cyan); font-size: clamp(11px, 0.86vw, 18px); font-weight: 700; }
+.channel-card header b { color: #fff; font-size: 29px; font-weight: 900; }
+.channel-card header span { color: var(--cyan); font-size: 17px; font-weight: 700; }
 
 .ch-row { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: start; }
-.ch-label { color: var(--cyan); font-size: clamp(10px, 0.78vw, 16px); font-weight: 900; letter-spacing: 0.06em; padding-top: 2px; }
-.ch-row p { color: rgba(255,255,255,0.85); font-size: clamp(11px, 0.84vw, 18px); font-weight: 500; line-height: 1.4; }
+.ch-label { color: var(--cyan); font-size: 15px; font-weight: 900; letter-spacing: 0.06em; padding-top: 2px; }
+.ch-row p { color: rgba(255,255,255,0.85); font-size: 16px; font-weight: 500; line-height: 1.4; }
 
 /* ============ RISK TABLE ============ */
 .layout-risk-table {
@@ -1976,18 +1989,18 @@ h3 {
   background: var(--warn);
   color: #fff;
   font-weight: 900;
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   letter-spacing: 0.06em;
   padding: 12px 16px;
   text-align: center;
 }
 
 .risk-row:not(.header) span {
-  padding: clamp(9px, 0.9vw, 18px) clamp(12px, 1.1vw, 23px);
+  padding: 17px 21px;
   background: #fff;
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   line-height: 1.5;
   font-weight: 500;
   display: grid;
@@ -2001,7 +2014,7 @@ h3 {
 
 .risk-row .risk-name b {
   color: var(--warn);
-  font-size: clamp(13px, 1vw, 22px);
+  font-size: 19px;
   font-weight: 900;
 }
 
@@ -2016,7 +2029,7 @@ h3 {
   padding: 2px 7px;
   background: var(--blue);
   color: #fff;
-  font-size: clamp(9px, 0.7vw, 14px);
+  font-size: 13px;
   font-weight: 900;
   letter-spacing: 0.08em;
   margin-right: 8px;
@@ -2037,12 +2050,12 @@ h3 {
 .baseline-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 1.6vw, 30px);
+  gap: 30px;
   align-items: stretch;
 }
 
 .baseline-card {
-  padding: clamp(24px, 2.2vw, 48px);
+  padding: 42px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -2077,7 +2090,7 @@ h3 {
   place-items: center;
   background: var(--ink);
   color: #fff;
-  font-size: clamp(18px, 1.5vw, 30px);
+  font-size: 29px;
   font-weight: 900;
   letter-spacing: -0.02em;
 }
@@ -2088,7 +2101,7 @@ h3 {
 
 .bl-tag {
   padding: 4px 10px;
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   letter-spacing: 0.06em;
   color: #fff;
@@ -2099,7 +2112,7 @@ h3 {
 .tone-pending .bl-tag { background: var(--warn); }
 
 .bl-title {
-  font-size: clamp(15px, 1.2vw, 27px);
+  font-size: 23px;
   color: var(--ink);
   font-weight: 900;
   line-height: 1.18;
@@ -2112,7 +2125,7 @@ h3 {
 }
 
 .baseline-card li {
-  font-size: clamp(11px, 0.84vw, 18px);
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.65;
   font-weight: 500;
@@ -2165,7 +2178,7 @@ h3 {
 
 .axis-label {
   position: absolute;
-  font-size: clamp(11px, 0.9vw, 20px);
+  font-size: 17px;
   font-weight: 900;
   color: var(--navy);
   letter-spacing: 0.06em;
@@ -2197,7 +2210,7 @@ h3 {
 }
 
 .dot-label {
-  font-size: clamp(11px, 0.88vw, 20px);
+  font-size: 17px;
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
@@ -2219,7 +2232,7 @@ h3 {
   color: #fff;
   font-weight: 900;
   border-color: var(--blue);
-  font-size: clamp(12px, 1vw, 22px);
+  font-size: 19px;
 }
 
 @keyframes pulse {
@@ -2239,11 +2252,11 @@ h3 {
 .naming-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(14px, 1.4vw, 29px);
+  gap: 27px;
 }
 
 .name-card {
-  padding: clamp(20px, 2vw, 40px);
+  padding: 38px;
   background: #fff;
   border: 1px solid var(--line);
   border-top: 4px solid var(--blue);
@@ -2262,12 +2275,12 @@ h3 {
 .name-head { display: grid; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .name-en { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
 .name-en .part { display: inline-flex; flex-direction: column; align-items: flex-start; }
-.name-en .part b { font-size: clamp(18px, 1.8vw, 35px); color: var(--blue); font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
-.name-en .part em { font-style: normal; font-size: clamp(10px, 0.78vw, 16px); font-weight: 700; color: var(--muted); margin-top: 4px; }
-.name-en .plus { font-size: clamp(20px, 1.8vw, 35px); color: var(--cyan); font-weight: 900; padding: 0 4px; }
-.name-cn { font-size: clamp(13px, 1.05vw, 22px); color: var(--ink); font-weight: 900; }
-.name-action { color: var(--muted); font-size: clamp(11px, 0.86vw, 18px); line-height: 1.4; font-weight: 600; }
-.name-asset { display: inline-block; width: max-content; padding: 4px 10px; font-size: clamp(10px, 0.78vw, 15px); font-weight: 900; letter-spacing: 0.06em; color: var(--blue); background: var(--blue-light); }
+.name-en .part b { font-size: 35px; color: var(--blue); font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+.name-en .part em { font-style: normal; font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 4px; }
+.name-en .plus { font-size: 35px; color: var(--cyan); font-weight: 900; padding: 0 4px; }
+.name-cn { font-size: 20px; color: var(--ink); font-weight: 900; }
+.name-action { color: var(--muted); font-size: 17px; line-height: 1.4; font-weight: 600; }
+.name-asset { display: inline-block; width: max-content; padding: 4px 10px; font-size: 15px; font-weight: 900; letter-spacing: 0.06em; color: var(--blue); background: var(--blue-light); }
 
 /* ============ CONTENT SCRIPTS ============ */
 .layout-content-scripts {
@@ -2281,12 +2294,12 @@ h3 {
 .scripts-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(12px, 1.2vw, 23px);
+  gap: 23px;
   align-items: stretch;
 }
 
 .script-card {
-  padding: clamp(16px, 1.6vw, 30px);
+  padding: 30px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -2295,8 +2308,8 @@ h3 {
 }
 
 .script-card header { display: grid; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-.script-card header b { font-size: clamp(15px, 1.2vw, 26px); color: var(--blue); font-weight: 900; }
-.script-tag { font-size: clamp(10px, 0.78vw, 15px); font-weight: 900; letter-spacing: 0.06em; color: var(--cyan); padding: 3px 8px; background: var(--navy); width: max-content; }
+.script-card header b { font-size: 23px; color: var(--blue); font-weight: 900; }
+.script-tag { font-size: 15px; font-weight: 900; letter-spacing: 0.06em; color: var(--cyan); padding: 3px 8px; background: var(--navy); width: max-content; }
 
 .shot-list { display: grid; gap: 8px; counter-reset: shotnum; }
 .shot-list li { padding-left: 0; position: relative; }
@@ -2305,7 +2318,7 @@ h3 {
 .shot-list li em {
   display: inline-block;
   font-style: normal;
-  font-size: clamp(10px, 0.74vw, 15px);
+  font-size: 14px;
   font-weight: 900;
   color: #fff;
   background: var(--blue);
@@ -2316,7 +2329,7 @@ h3 {
 
 .shot-list li p {
   color: var(--ink-soft);
-  font-size: clamp(11px, 0.84vw, 18px);
+  font-size: 16px;
   line-height: 1.55;
   font-weight: 500;
 }
@@ -2329,7 +2342,7 @@ h3 {
 }
 
 .script-card footer div {
-  font-size: clamp(11px, 0.84vw, 16px);
+  font-size: 16px;
   color: var(--ink);
   font-weight: 700;
   line-height: 1.34;
@@ -2354,12 +2367,12 @@ h3 {
 .phase-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 1.6vw, 30px);
+  gap: 30px;
   align-items: stretch;
 }
 
 .phase-card {
-  padding: clamp(20px, 2vw, 40px);
+  padding: 38px;
   background: #fff;
   border: 1px solid var(--line);
   display: grid;
@@ -2379,22 +2392,22 @@ h3 {
 }
 
 .phase-card header { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-.phase-card em { font-style: normal; font-size: clamp(14px, 1.15vw, 25px); color: var(--cyan); font-weight: 900; letter-spacing: 0.05em; }
-.phase-card header b { font-size: clamp(18px, 1.6vw, 32px); color: var(--navy); font-weight: 900; }
+.phase-card em { font-style: normal; font-size: 22px; color: var(--cyan); font-weight: 900; letter-spacing: 0.05em; }
+.phase-card header b { font-size: 31px; color: var(--navy); font-weight: 900; }
 
 .phase-section { display: grid; gap: 8px; }
-.phase-section-label { font-size: clamp(10px, 0.78vw, 16px); font-weight: 900; letter-spacing: 0.08em; color: var(--blue); text-transform: uppercase; }
+.phase-section-label { font-size: 15px; font-weight: 900; letter-spacing: 0.08em; color: var(--blue); text-transform: uppercase; }
 .phase-section ul { display: grid; gap: 6px; }
 .phase-section li { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 8px 10px; background: var(--blue-light); border-left: 3px solid var(--blue); align-items: baseline; }
-.phase-section li b { color: var(--ink); font-size: clamp(11px, 0.88vw, 18px); font-weight: 900; }
-.phase-section li em { font-style: normal; font-size: clamp(10px, 0.78vw, 16px); color: var(--muted); font-weight: 700; }
-.phase-section p { font-size: clamp(11px, 0.85vw, 18px); color: var(--ink); line-height: 1.4; font-weight: 500; }
+.phase-section li b { color: var(--ink); font-size: 17px; font-weight: 900; }
+.phase-section li em { font-style: normal; font-size: 15px; color: var(--muted); font-weight: 700; }
+.phase-section p { font-size: 16px; color: var(--ink); line-height: 1.4; font-weight: 500; }
 
 .phase-goal {
   padding: 12px 14px;
   background: var(--navy);
   color: var(--cyan);
-  font-size: clamp(11px, 0.88vw, 18px);
+  font-size: 17px;
   font-weight: 900;
   line-height: 1.36;
   border-left: 3px solid var(--cyan);
@@ -2421,12 +2434,12 @@ h3 {
 .ramp-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 1.6vw, 30px);
+  gap: 30px;
   align-items: stretch;
 }
 
 .ramp-card {
-  padding: clamp(22px, 2.2vw, 45px);
+  padding: 42px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.14);
   display: grid;
@@ -2447,18 +2460,18 @@ h3 {
 .ramp-card.ramp-2 { border-top: 5px solid #fff; }
 
 .ramp-card header { display: grid; gap: 4px; }
-.ramp-card em { font-style: normal; font-size: clamp(32px, 3vw, 62px); font-weight: 900; color: var(--cyan); line-height: 0.8; letter-spacing: -0.02em; }
-.ramp-period { font-size: clamp(11px, 0.84vw, 18px); color: rgba(255,255,255,0.6); font-weight: 700; }
-.ramp-card header b { font-size: clamp(16px, 1.3vw, 29px); color: #fff; font-weight: 900; }
+.ramp-card em { font-style: normal; font-size: 58px; font-weight: 900; color: var(--cyan); line-height: 0.8; letter-spacing: -0.02em; }
+.ramp-period { font-size: 16px; color: rgba(255,255,255,0.6); font-weight: 700; }
+.ramp-card header b { font-size: 25px; color: #fff; font-weight: 900; }
 
 .ramp-target { display: grid; gap: 4px; padding: 14px 16px; background: rgba(47,211,255,0.1); border-left: 3px solid var(--cyan); }
-.ramp-target span { font-size: clamp(10px, 0.78vw, 16px); color: var(--cyan); font-weight: 900; letter-spacing: 0.06em; }
-.ramp-target strong { font-size: clamp(20px, 1.8vw, 38px); color: #fff; font-weight: 900; }
+.ramp-target span { font-size: 15px; color: var(--cyan); font-weight: 900; letter-spacing: 0.06em; }
+.ramp-target strong { font-size: 35px; color: #fff; font-weight: 900; }
 
 .ramp-drivers { display: grid; gap: 6px; align-content: start; }
 .ramp-drivers li {
   color: rgba(255,255,255,0.85);
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.4;
   padding-left: 14px;
@@ -2478,7 +2491,7 @@ h3 {
   padding: 10px 12px;
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: clamp(11px, 0.86vw, 18px);
+  font-size: 17px;
   font-weight: 700;
   border-left: 3px solid var(--cyan);
   line-height: 1.36;
@@ -2489,7 +2502,7 @@ h3 {
   position: relative;
   z-index: 10;
   height: 72px;
-  padding: 14px clamp(20px, 3vw, 58px);
+  padding: 14px 58px;
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) 48px;
   align-items: center;
@@ -2569,10 +2582,14 @@ h3 {
 
   .slide {
     position: relative;
+    inset: auto !important;
+    top: auto !important;
+    left: auto !important;
     min-height: calc(100dvh - 80px);
     height: auto;
     display: none;
     transform: none !important;
+    transform-origin: top left !important;
     width: 100% !important;
     max-width: 100% !important;
     grid-template-columns: minmax(0, 1fr) !important;
@@ -2599,12 +2616,18 @@ h3 {
     max-width: 100%;
   }
 
-  h1 { font-size: clamp(34px, 9vw, 67px); line-height: 1.04; }
-  h2 { font-size: clamp(24px, 6.5vw, 48px); line-height: 1.1; }
-  h3 { font-size: clamp(17px, 5vw, 29px); }
-  .subtitle { font-size: clamp(13px, 3.6vw, 21px); line-height: 1.6; }
-  .proof { font-size: clamp(13px, 3.4vw, 21px); padding: 12px 14px; }
-  .kicker { font-size: clamp(10px, 2.8vw, 15px); }
+  h1 { font-size: 30px; line-height: 1.1; }
+  h2 { font-size: 24px; line-height: 1.16; }
+  h3 { font-size: 18px; }
+  .subtitle { font-size: 14px; line-height: 1.6; }
+  .proof { font-size: 13px; padding: 11px 13px; }
+  .kicker { font-size: 11px; }
+  /* mobile-appropriate card body fonts */
+  .asset-code, .seg-priority, .lesson-tag, .tag, .planb-tag, .ch-label, .seg-label, .phase-section-label, .asset-source, .name-asset, .tp-asset, .ramp-target span { font-size: 11px; }
+  .asset-card b, .lesson-row b, .channel-card header b, .name-cn, .stat-card b, .baseline-card .bl-title, .segment-card b { font-size: 14px; }
+  .asset-translation, .lesson-row p, .seg-row span:not(.seg-label), .ch-row p, .tp-body p, .name-action, .baseline-card li, .sku-col li, .ramp-drivers li, .channel-tag p, .asset-photo-body p, .spec-value, .stat-note { font-size: 12px; }
+  .stat-value, .ramp-card em, .ask-card em, .tp-num { font-size: 28px; }
+  .ramp-target strong { font-size: 18px; }
 
   .layout-cover .slide-inner,
   .layout-hero-spec .slide-inner {
@@ -2634,8 +2657,8 @@ h3 {
   /* Stats grid: 2x2 on phone */
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .stat-card { padding: 16px 14px; }
-  .stat-value { font-size: clamp(28px, 7vw, 48px); }
-  .stat-unit { font-size: clamp(11px, 2.8vw, 16px); }
+  .stat-value { font-size: 48px; }
+  .stat-unit { font-size: 16px; }
 
   /* Tables on mobile: one row per visual card with stacked cells */
   .validation-row, .year-row, .risk-row {
@@ -2685,7 +2708,7 @@ h3 {
 
   /* Naming cards */
   .name-card { padding: 18px 16px; gap: 10px; }
-  .name-en .part b { font-size: clamp(18px, 4.6vw, 30px); }
+  .name-en .part b { font-size: 30px; }
 
   /* Scripts cards */
   .script-card { padding: 14px 14px; gap: 8px; }
