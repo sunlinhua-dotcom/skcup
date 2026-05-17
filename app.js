@@ -84,7 +84,7 @@ function renderCover(slide) {
           <p class="proof" data-anim style="--anim-delay: 720ms">${esc(slide.proof || "")}</p>
         </div>
         <figure class="cover-visual" data-anim-scale style="--anim-delay: 300ms">
-          <img src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+          <img loading="eager" fetchpriority="high" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
         </figure>
       </div>
     </section>
@@ -164,7 +164,7 @@ function renderAssetWithImage(slide) {
               .join("")}
           </div>
           <figure class="asset-side-image" data-anim-scale style="--anim-delay: 320ms">
-            <img src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
           </figure>
         </div>
         ${proofBlock(slide, 380 + slide.assets.length * 90 + 240)}
@@ -176,7 +176,7 @@ function renderAssetWithImage(slide) {
 function renderTranslation(slide) {
   const visualBlock = slide.image
     ? `<figure class="translation-visual" data-anim-scale style="--anim-delay: 320ms">
-        <img src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+        <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
         <figcaption>同一种纹理语言，从鞋底翻到杯身</figcaption>
       </figure>`
     : "";
@@ -222,7 +222,7 @@ function renderHeroSpec(slide) {
     <section class="slide layout-hero-spec" data-id="${esc(slide.id)}">
       <div class="slide-inner">
         <figure class="hero-image-side">
-          <img src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+          <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
         </figure>
         <div class="hero-content-side">
           <div class="topline">
@@ -452,7 +452,7 @@ function renderCaseStudy(slide) {
         ${topline(slide)}
         <div class="case-body">
           <figure class="case-visual" data-anim-scale style="--anim-delay: 320ms">
-            <img src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
           </figure>
           <div class="case-lessons">
             ${slide.lessons
@@ -512,7 +512,7 @@ function renderSkuMatrix(slide) {
             .map(
               (s, i) => `
                 <article class="sku-col${s.image ? " with-image" : ""}" data-anim ${stagger(i, 120, 320)}>
-                  ${s.image ? `<figure class="sku-image"><img src="${esc(s.image)}" alt="${esc(s.name)}" /></figure>` : ""}
+                  ${s.image ? `<figure class="sku-image"><img loading="lazy" decoding="async" src="${esc(s.image)}" alt="${esc(s.name)}" /></figure>` : ""}
                   <header>
                     <b>${esc(s.name)}</b>
                     <span>${esc(s.name_cn)}</span>
@@ -538,7 +538,7 @@ function renderTouchpoint(slide) {
         ${topline(slide)}
         <div class="touchpoint-body">
           <figure class="touchpoint-visual" data-anim-scale style="--anim-delay: 320ms">
-            <img src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
           </figure>
           <div class="touchpoint-list">
             ${slide.touchpoints
@@ -573,7 +573,7 @@ function renderChannelGrid(slide) {
             .map(
               (c, i) => `
                 <article class="channel-card" data-anim ${stagger(i, 140, 320)}>
-                  ${c.image ? `<figure class="ch-image"><img src="${esc(c.image)}" alt="${esc(c.name)}" /></figure>` : ""}
+                  ${c.image ? `<figure class="ch-image"><img loading="lazy" decoding="async" src="${esc(c.image)}" alt="${esc(c.name)}" /></figure>` : ""}
                   <header>
                     <b>${esc(c.name)}</b>
                     <span>${esc(c.role)}</span>
@@ -602,7 +602,7 @@ function renderAssetCardGrid(slide) {
             .map(
               (a, i) => `
                 <article class="asset-photo-card" data-anim-scale ${stagger(i, 110, 320)}>
-                  ${a.image ? `<figure class="asset-photo"><img src="${esc(a.image)}" alt="${esc(a.code)}" /></figure>` : ""}
+                  ${a.image ? `<figure class="asset-photo"><img loading="lazy" decoding="async" src="${esc(a.image)}" alt="${esc(a.code)}" /></figure>` : ""}
                   <div class="asset-photo-body">
                     <span class="asset-code">${esc(a.code)}</span>
                     <b>${esc(a.name_cn)}</b>

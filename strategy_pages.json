@@ -13,7 +13,7 @@
       "headline": "把斯凯奇的舒适科技，装进一只杯子",
       "subhead": "不是又一个保温杯品牌，是斯凯奇运动生活方式的下一个佩戴入口。三年用四款英雄单品在杯壶赛道做出可识别的斯凯奇方法。",
       "proof": "杯子要长得像一双 Skechers 鞋——一摸就知道是舒适科技。",
-      "image": "./assets/products/sporty_quick_open.jpg",
+      "image": "./assets/products/sporty_quick_open.webp",
       "image_alt": "PaceClick 运动快开杯"
     },
     {
@@ -22,7 +22,7 @@
       "kicker": "为什么现在做",
       "headline": "三条增长曲线，同时打开",
       "subhead": "斯凯奇手里已经有鞋服销售、运动专区、儿童 NO.1、明星社群这几股市场动力。杯壶要做的不是从零起步，是把这些动力接到一个高频日用品上。",
-      "background_image": "./assets/generated/running_lifestyle.png",
+      "background_image": "./assets/generated/running_lifestyle.webp",
       "stats": [
         {
           "value": "89.7亿$",
@@ -60,7 +60,7 @@
           "scenes": "授权 Disney / Coca-Cola / Sanrio / 草莓熊等头部 IP，单 SKU 多 IP 变体",
           "hero": "公开渠道客单约 ¥99-249，年轻女性 + 礼品场景",
           "kpi": "靠 IP 溢价和收藏属性带销量",
-          "image": "./assets/generated/germ_ip_concept.png"
+          "image": "./assets/generated/germ_ip_concept.webp"
         },
         {
           "name": "结构创新路径",
@@ -68,7 +68,7 @@
           "scenes": "一盖三模式（吸管 + 嘴喝 + 大口）、手柄 + 吸管组合，结构差异化",
           "hero": "公开渠道客单约 ¥199-399，长期资产",
           "kpi": "结构是护城河，难复制",
-          "image": "./assets/generated/owala_multimode.png"
+          "image": "./assets/generated/owala_multimode.webp"
         },
         {
           "name": "颜色机制路径",
@@ -76,7 +76,7 @@
           "scenes": "同 SKU 每月放限定色、联名色、季节色，构成持续话题",
           "hero": "复购率 + 收藏率拉满",
           "kpi": "不增模具，靠颜色延长 SKU 生命",
-          "image": "./assets/generated/stanley_colors_stack.png"
+          "image": "./assets/generated/stanley_colors_stack.webp"
         },
         {
           "name": "舒适科技路径",
@@ -84,7 +84,7 @@
           "scenes": "用品牌已有舒适科技语言定义杯子触点（手柄/嘴/底/盖）",
           "hero": "公开渠道客单约 ¥179-279，运动生活方式人群",
           "kpi": "和斯凯奇鞋服资产互相印证",
-          "image": "./assets/generated/handle_mouth_hero.png"
+          "image": "./assets/generated/handle_mouth_hero.webp"
         }
       ],
       "proof": "前三条都有人占住，第四条是斯凯奇可以独占的位置。"
@@ -95,7 +95,7 @@
       "kicker": "案例 · IP 路径",
       "headline": "GERM 格米：靠 IP 矩阵在杯壶赛道做出辨识度",
       "subhead": "GERM 格米靠 IP 授权做杯壶。公开旗舰店上能看到 Disney、Sanrio、Loopy、可口可乐等多个 IP 联名款，同一只杯子被做成大量 SKU 变体。",
-      "image": "./assets/generated/germ_ip_concept.png",
+      "image": "./assets/generated/germ_ip_concept.webp",
       "image_alt": "IP 联名水杯参考",
       "lessons": [
         {
@@ -137,7 +137,7 @@
       "kicker": "案例 · 结构路径",
       "headline": "Owala FreeSip：一盖三模式，长期资产",
       "subhead": "Owala 2020 在美国上市，靠杯盖差异化跑出来——一盖三模式（吸管 + 嘴喝 + 大口冲洗）。海外社媒上反复有「切换三种喝法」的测评视频，是 Stanley 之外的另一条线。",
-      "image": "./assets/generated/owala_multimode.png",
+      "image": "./assets/generated/owala_multimode.webp",
       "image_alt": "Owala 多模式杯盖参考",
       "lessons": [
         {
@@ -179,7 +179,7 @@
       "kicker": "案例 · 颜色路径",
       "headline": "Stanley Quencher：一只杯子，靠颜色机制滚多年",
       "subhead": "Stanley Quencher 30oz 长期就这一只杯子，靠限定色 / 联名色 / 季节色滚动，让单品有了复购属性。限定色多次出现现象级抢购的公开报道。",
-      "image": "./assets/generated/stanley_colors_stack.png",
+      "image": "./assets/generated/stanley_colors_stack.webp",
       "image_alt": "Stanley 颜色限定参考",
       "lessons": [
         {
@@ -221,7 +221,7 @@
       "kicker": "案例 · Stanley 总结",
       "headline": "学 Stanley 的方法，不抄 Stanley 的杯型",
       "subhead": "把 Owala 的结构 + Stanley 的颜色 + GERM 的 IP 放大组合起来。但避开 Stanley 的美式硬朗审美，也避开已经饱和的冰霸杯赛道。",
-      "image": "./assets/generated/handle_mouth_hero.png",
+      "image": "./assets/generated/handle_mouth_hero.webp",
       "image_alt": "Stanley 复盘",
       "lessons": [
         {
@@ -340,7 +340,7 @@
       "kicker": "我们的爆款路径",
       "headline": "结构主路径 + 颜色副引擎 + IP 季节叠加",
       "subhead": "不押单一路径。结构是护城河（PaceClick / MagLoop / SlingDock / KidGuard），颜色是复购引擎（学 Stanley），IP 是季节话题（学 GERM 但不当主线）。",
-      "image": "./assets/generated/bomb_paths_montage.png",
+      "image": "./assets/generated/bomb_paths_montage.webp",
       "image_alt": "爆款路径组合",
       "lessons": [
         {
@@ -438,28 +438,28 @@
           "name_cn": "记忆海绵鞋垫 → 软触提手",
           "source": "品牌介绍 p21",
           "translation": "手柄记忆海绵套包裹，握 1L 大容量也不勒手，长时间携带不累",
-          "image": "./assets/generated/tech_memory_foam.png"
+          "image": "./assets/generated/tech_memory_foam.webp"
         },
         {
           "code": "SKECH-AIR",
           "name_cn": "气垫缓震 → 杯底防摔气囊",
           "source": "品牌介绍 p21",
           "translation": "杯底硅胶气囊，1.2m 跌落不变形——儿童线安全核心卖点",
-          "image": "./assets/generated/tech_skech_air.png"
+          "image": "./assets/generated/tech_skech_air.webp"
         },
         {
           "code": "GLIDE-STEP",
           "name_cn": "回弹脚感 → 回弹按盖",
           "source": "品牌介绍 p21",
           "translation": "PaceClick 一按即开盖，运动中单手秒开秒合，节奏不断",
-          "image": "./assets/generated/tech_glide_step.png"
+          "image": "./assets/generated/tech_glide_step.webp"
         },
         {
           "code": "GO FLEX",
           "name_cn": "柔软鞋面 → 软触杯身",
           "source": "品牌介绍 p21",
           "translation": "杯身哑光软触涂层，不滑不冰手，比硬塑料温柔",
-          "image": "./assets/generated/tech_go_flex.png"
+          "image": "./assets/generated/tech_go_flex.webp"
         }
       ]
     },
@@ -475,28 +475,28 @@
           "name_cn": "鞋面透气速干 → 杯嘴不滴不挂",
           "source": "品牌介绍 p14, p22",
           "translation": "速干杯嘴 + 防滴漏导槽，喝完嘴边不沾水",
-          "image": "./assets/generated/tech_go_flex.png"
+          "image": "./assets/generated/tech_go_flex.webp"
         },
         {
           "code": "SKECHWEAVE",
           "name_cn": "梭织鞋面 → 梭织肩带",
           "source": "品牌介绍 p22",
           "translation": "宽幅梭织肩带，曲面贴肩不勒，背 1 小时不累",
-          "image": "./assets/generated/weave_knit_hero.png"
+          "image": "./assets/generated/weave_knit_hero.webp"
         },
         {
           "code": "RESTLESS YOUTH",
           "name_cn": "坐不住的年轻人 → 杯子跟着走",
           "source": "品牌介绍 p9",
           "translation": "绳带、磁吸、肩带、挂扣——配件让杯子可佩戴",
-          "image": "./assets/generated/running_lifestyle.png"
+          "image": "./assets/generated/running_lifestyle.webp"
         },
         {
           "code": "COMFORT TECHNOLOGY",
           "name_cn": "舒适科技公司 → 全部卖点回到舒适",
           "source": "品牌介绍 p16-17",
           "translation": "不卖参数表，卖的是上手、上嘴、上肩的舒适体验",
-          "image": "./assets/generated/comfort_shoe_hero.png"
+          "image": "./assets/generated/comfort_shoe_hero.webp"
         }
       ],
       "proof": "八项资产盘点完了。每一款杯子卖点都得回到这两张表的某一行——最后落到一个词：舒适。"
@@ -507,7 +507,7 @@
       "kicker": "舒适触点 → 舒适触点",
       "headline": "斯凯奇怎么做鞋舒适，我们怎么做杯子舒适",
       "subhead": "不是把鞋底纹画在杯身上。是把鞋上每一个让脚舒服的细节，翻到杯子上每一个会被手、被嘴、被肩接触的地方。",
-      "image": "./assets/generated/translation_concept.png?v=3",
+      "image": "./assets/generated/translation_concept.webp",
       "image_alt": "穿鞋的舒适与握杯的舒适",
       "rows": [
         {
@@ -580,7 +580,7 @@
               "text": "酷感冰霸杯 ¥199"
             }
           ],
-          "image": "./assets/generated/series_sporty.png"
+          "image": "./assets/generated/series_sporty.webp"
         },
         {
           "name": "TRENDY",
@@ -612,7 +612,7 @@
               "text": "轻漾/轻透/炫彩 ¥99-109"
             }
           ],
-          "image": "./assets/generated/series_trendy.png"
+          "image": "./assets/generated/series_trendy.webp"
         },
         {
           "name": "YOUNG",
@@ -638,7 +638,7 @@
               "text": "轻澈/轻沁 ¥99"
             }
           ],
-          "image": "./assets/generated/series_young.png"
+          "image": "./assets/generated/series_young.webp"
         },
         {
           "name": "URBAN",
@@ -648,7 +648,7 @@
               "text": "焕能冰霸杯 ¥199（与 TRENDY 共用）"
             }
           ],
-          "image": "./assets/generated/series_urban.png"
+          "image": "./assets/generated/series_urban.webp"
         },
         {
           "name": "KIDS",
@@ -662,7 +662,7 @@
               "text": "（明显薄弱，最大增量空间）"
             }
           ],
-          "image": "./assets/generated/series_kids.png"
+          "image": "./assets/generated/series_kids.webp"
         }
       ],
       "proof": "四款英雄都对应原矩阵的 ⭐ SKU——升级而不是替换。儿童线只有单 SKU，是最大增量空间。"
@@ -673,7 +673,7 @@
       "kicker": "杯壶舒适地图",
       "headline": "一只杯子，七个舒适触点",
       "subhead": "客户能看到我们具体在哪里做了舒适功夫。这七个触点是后面四款英雄共享的产品标准——四款各自激活其中 4-5 个。",
-      "image": "./assets/generated/handle_mouth_hero.png",
+      "image": "./assets/generated/handle_mouth_hero.webp",
       "image_alt": "杯壶舒适触点示意",
       "touchpoints": [
         {
@@ -801,7 +801,7 @@
       "kicker": "英雄 1 · 运动",
       "headline": "PaceClick 单手快开运动杯",
       "subhead": "把斯凯奇 GLIDE-STEP 回弹脚感翻译到杯盖。运动中单手按开，节奏不断。来源于 2026 手册轻屿闪开杯（p20，¥179/189/199，260/550/780mL），升级回弹机构、防漏锁和软触握感面。",
-      "image": "./assets/products/sporty_quick_open.jpg",
+      "image": "./assets/products/sporty_quick_open.webp",
       "image_alt": "PaceClick 单手快开运动杯",
       "specs": [
         {
@@ -865,7 +865,7 @@
       "kicker": "英雄 2 · 创新",
       "headline": "MagLoop 磁吸手机支架盖",
       "subhead": "把 RESTLESS YOUTH 翻译成结构：杯盖顶部集成磁吸环，可吸 MagSafe 兼容手机或带壳手机，角度可微调。这是 2026 手册支架杯系列（摩卡 / 奶芙 / 复古）的下一代——从只能支撑手机升级到可吸附定位。",
-      "image": "./assets/products/magsnap_phone_lid.jpg",
+      "image": "./assets/products/magsnap_phone_lid.webp",
       "image_alt": "MagLoop 磁吸手机支架盖",
       "specs": [
         {
@@ -929,7 +929,7 @@
       "kicker": "英雄 3 · 穿搭",
       "headline": "SlingDock 城市轻户外背带杯",
       "subhead": "把 SKECHWEAVE 梭织弹力翻译成挂绳和肩带。来源于 2026 手册悦缤随享杯（p08，¥189，530mL），升级编织肩带、可拆挂扣，和斯凯奇鞋服包构成穿戴一体陈列。",
-      "image": "./assets/products/outdoor_sling_cup.jpg",
+      "image": "./assets/products/outdoor_sling_cup.webp",
       "image_alt": "SlingDock 城市轻户外背带杯",
       "specs": [
         {
@@ -993,7 +993,7 @@
       "kicker": "英雄 4 · 儿童",
       "headline": "KidGuard 儿童运动安全水杯",
       "subhead": "把 SKECH-AIR 气垫缓震和 MEMORY FOAM 翻译到儿童线。来源于 2026 手册闲趣儿童杯（p25，¥229，500mL），升级气囊防摔底、软吸嘴、姓名牌、可拆肩带——是斯凯奇亚洲 NO.1 儿童运动品牌的杯壶版。",
-      "image": "./assets/products/kids_sport_bottle.jpg",
+      "image": "./assets/products/kids_sport_bottle.webp",
       "image_alt": "KidGuard 儿童运动安全水杯",
       "specs": [
         {
@@ -1201,7 +1201,7 @@
       "kicker": "结构验证门",
       "headline": "四款，过同一组验证门",
       "subhead": "客户不需要听到承诺，要看到验证清单。下表每一项均为打样验证目标；BOM 与 MOQ 为初步估算，需供应链询价后定稿。",
-      "background_image": "./assets/generated/validation_blueprint.png",
+      "background_image": "./assets/generated/validation_blueprint.webp",
       "columns": [
         "产品",
         "结构打样（提案）",
@@ -1260,7 +1260,7 @@
       "kicker": "数据监控仪表盘",
       "headline": "用 Stanley 字段，做斯凯奇监控",
       "subhead": "Stanley 复盘 PPT 给项目最大的不是杯型，是这套监控字段。我们把它做成长期可观测的仪表盘，每一款英雄单品上市后逐周监控。",
-      "background_image": "./assets/generated/monitoring_room.png",
+      "background_image": "./assets/generated/monitoring_room.webp",
       "panels": [
         {
           "title": "巨量算数 / 飞瓜",
