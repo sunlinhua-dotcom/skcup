@@ -133,6 +133,15 @@ ul { list-style: none; }
   z-index: 1;
 }
 
+/* Inactive slides: let browser skip rendering work entirely */
+.slide:not(.active) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1920px 1080px;
+}
+
+/* <picture> wraps AVIF+WebP sources but should not add to layout */
+picture { display: contents; }
+
 .slide-inner {
   position: relative;
   width: 100%;

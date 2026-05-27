@@ -47,6 +47,24 @@ function badge(text) {
   return `<span class="tag ${cls}">${esc(match[1])}</span>${esc(match[2])}`;
 }
 
+
+// <picture> with AVIF + WebP fallback. Browsers pick the first supported source.
+// Eager-load only the cover hero; everything else lazy + async decode.
+function pictureTag(src, alt, opts = {}) {
+  const cleanSrc = String(src ?? "").split("?")[0];
+  const avif = cleanSrc.replace(/\.webp$/i, ".avif").replace(/\.jpg$/i, ".avif").replace(/\.png$/i, ".avif");
+  const eager = opts.eager === true;
+  const lazyAttr = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
+  return `<picture><source srcset="${esc(avif)}" type="image/avif"><source srcset="${esc(cleanSrc)}" type="image/webp"><img ${lazyAttr} src="${esc(cleanSrc)}" alt="${esc(alt ?? "")}" /></picture>`;
+}
+
+// CSS background image with AVIF+WebP via image-set()
+function bgImageStyle(src) {
+  const cleanSrc = String(src ?? "").split("?")[0];
+  const avif = cleanSrc.replace(/\.webp$/i, ".avif").replace(/\.jpg$/i, ".avif").replace(/\.png$/i, ".avif");
+  return `image-set(url('${avif}') type('image/avif') 1x, url('${cleanSrc}') type('image/webp') 1x)`;
+}
+
 // Stagger delay helper
 const stagger = (i, base = 80, start = 80) => `style="--anim-delay: ${start + i * base}ms"`;
 
@@ -84,7 +102,7 @@ function renderCover(slide) {
           <p class="proof" data-anim style="--anim-delay: 720ms">${esc(slide.proof || "")}</p>
         </div>
         <figure class="cover-visual" data-anim-scale style="--anim-delay: 300ms">
-          <img loading="eager" fetchpriority="high" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+          ${pictureTag(slide.image, slide.image_alt, {eager: true})}
         </figure>
       </div>
     </section>
@@ -93,7 +111,7 @@ function renderCover(slide) {
 
 function renderStats(slide) {
   const hasBg = !!slide.background_image;
-  const bgStyle = hasBg ? ` style="--bg-image: url('${esc(slide.background_image)}')"` : "";
+  const bgStyle = hasBg ? ` style="--bg-image: ${bgImageStyle(slide.background_image)}"` : "";
   return `
     <section class="slide layout-stats${hasBg ? " has-bg" : ""}" data-id="${esc(slide.id)}"${bgStyle}>
       ${hasBg ? `<div class="slide-bg-image" aria-hidden="true"></div>` : ""}
@@ -164,7 +182,7 @@ function renderAssetWithImage(slide) {
               .join("")}
           </div>
           <figure class="asset-side-image" data-anim-scale style="--anim-delay: 320ms">
-            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+            ${pictureTag(slide.image, slide.image_alt)}
           </figure>
         </div>
         ${proofBlock(slide, 380 + slide.assets.length * 90 + 240)}
@@ -176,7 +194,7 @@ function renderAssetWithImage(slide) {
 function renderTranslation(slide) {
   const visualBlock = slide.image
     ? `<figure class="translation-visual" data-anim-scale style="--anim-delay: 320ms">
-        <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+        ${pictureTag(slide.image, slide.image_alt || "")}
         <figcaption>同一种纹理语言，从鞋底翻到杯身</figcaption>
       </figure>`
     : "";
@@ -222,7 +240,7 @@ function renderHeroSpec(slide) {
     <section class="slide layout-hero-spec" data-id="${esc(slide.id)}">
       <div class="slide-inner">
         <figure class="hero-image-side">
-          <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt)}" />
+          ${pictureTag(slide.image, slide.image_alt)}
         </figure>
         <div class="hero-content-side">
           <div class="topline">
@@ -277,7 +295,7 @@ function renderHeroSpec(slide) {
 
 function renderValidationTable(slide) {
   const hasBg = !!slide.background_image;
-  const bgStyle = hasBg ? ` style="--bg-image: url('${esc(slide.background_image)}')"` : "";
+  const bgStyle = hasBg ? ` style="--bg-image: ${bgImageStyle(slide.background_image)}"` : "";
   return `
     <section class="slide layout-validation${hasBg ? " has-watermark" : ""}" data-id="${esc(slide.id)}"${bgStyle}>
       ${hasBg ? `<div class="slide-watermark" aria-hidden="true"></div>` : ""}
@@ -317,7 +335,7 @@ function renderDashboard(slide) {
     return heights;
   };
   const hasBg = !!slide.background_image;
-  const bgStyle = hasBg ? ` style="--bg-image: url('${esc(slide.background_image)}')"` : "";
+  const bgStyle = hasBg ? ` style="--bg-image: ${bgImageStyle(slide.background_image)}"` : "";
   return `
     <section class="slide layout-dashboard${hasBg ? " has-bg" : ""}" data-id="${esc(slide.id)}"${bgStyle}>
       ${hasBg ? `<div class="slide-bg-image dim" aria-hidden="true"></div>` : ""}
@@ -452,7 +470,7 @@ function renderCaseStudy(slide) {
         ${topline(slide)}
         <div class="case-body">
           <figure class="case-visual" data-anim-scale style="--anim-delay: 320ms">
-            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+            ${pictureTag(slide.image, slide.image_alt || "")}
           </figure>
           <div class="case-lessons">
             ${slide.lessons
@@ -512,7 +530,7 @@ function renderSkuMatrix(slide) {
             .map(
               (s, i) => `
                 <article class="sku-col${s.image ? " with-image" : ""}" data-anim ${stagger(i, 120, 320)}>
-                  ${s.image ? `<figure class="sku-image"><img loading="lazy" decoding="async" src="${esc(s.image)}" alt="${esc(s.name)}" /></figure>` : ""}
+                  ${s.image ? `<figure class="sku-image">${pictureTag(s.image, s.name)}</figure>` : ""}
                   <header>
                     <b>${esc(s.name)}</b>
                     <span>${esc(s.name_cn)}</span>
@@ -538,7 +556,7 @@ function renderTouchpoint(slide) {
         ${topline(slide)}
         <div class="touchpoint-body">
           <figure class="touchpoint-visual" data-anim-scale style="--anim-delay: 320ms">
-            <img loading="lazy" decoding="async" src="${esc(slide.image)}" alt="${esc(slide.image_alt || "")}" />
+            ${pictureTag(slide.image, slide.image_alt || "")}
           </figure>
           <div class="touchpoint-list">
             ${slide.touchpoints
@@ -573,7 +591,7 @@ function renderChannelGrid(slide) {
             .map(
               (c, i) => `
                 <article class="channel-card" data-anim ${stagger(i, 140, 320)}>
-                  ${c.image ? `<figure class="ch-image"><img loading="lazy" decoding="async" src="${esc(c.image)}" alt="${esc(c.name)}" /></figure>` : ""}
+                  ${c.image ? `<figure class="ch-image">${pictureTag(c.image, c.name)}</figure>` : ""}
                   <header>
                     <b>${esc(c.name)}</b>
                     <span>${esc(c.role)}</span>
@@ -602,7 +620,7 @@ function renderAssetCardGrid(slide) {
             .map(
               (a, i) => `
                 <article class="asset-photo-card" data-anim-scale ${stagger(i, 110, 320)}>
-                  ${a.image ? `<figure class="asset-photo"><img loading="lazy" decoding="async" src="${esc(a.image)}" alt="${esc(a.code)}" /></figure>` : ""}
+                  ${a.image ? `<figure class="asset-photo">${pictureTag(a.image, a.code)}</figure>` : ""}
                   <div class="asset-photo-body">
                     <span class="asset-code">${esc(a.code)}</span>
                     <b>${esc(a.name_cn)}</b>
